@@ -24,3 +24,10 @@ class HomeView(Baseview):
         self.view['rank_seven'] = Ad.objects.filter(rank=7)
         self.view['rank_eight'] = Ad.objects.filter(rank=8)
         return render(request,'index.html',self.view)
+
+class ItemDetailView(Baseview):
+    def get(self,request,slug):
+        self.view['detail_product'] = Item.objects.filter(slug=slug)
+
+
+        return render(request,'product-detail.html',self.view)

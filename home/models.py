@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 LABEL = (('new','new'),('hot','hot'),('','default'))
 STATUS = (('active','active'),('','default'))
 STOCK = (('in','IN Stock'),('out','Out of stock'))
@@ -23,6 +24,9 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_item_url(self):
+        return reverse("home:product",kwargs = {'slug':self.slug})
 
 class Slider(models.Model):
     name = models.CharField(max_length = 500)

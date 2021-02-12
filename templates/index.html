@@ -204,7 +204,7 @@
                     <div class="col-md-3">
                         <div class="product-item">
                             <div class="product-title">
-                                <a href="#">{{item.title}}</a>
+                                <a href="{{item.get_item_url}}">{{item.title}}</a>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -214,7 +214,7 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
+                                <a href="{{item.get_item_url}}">
                                     <img src="{{item.image}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
@@ -268,7 +268,7 @@
                     <div class="col-lg-3">
                         <div class="product-item">
                             <div class="product-title">
-                                <a href="#">{{item.title}}</a>
+                                <a href="{{item.get_item_url}}">{{item.title}}</a>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -278,7 +278,7 @@
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
+                                <a href="{{item.get_item_url}}">
                                     <img src="{{item.image}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
