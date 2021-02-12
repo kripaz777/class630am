@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb51ce9e-b425-4b08-be7a-aa49923dc70f" name="Default Changelist" comment="Front page view">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    <list default="true" id="eb51ce9e-b425-4b08-be7a-aa49923dc70f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/templates/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product-detail.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/product-detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="322" column="69" selection-start-line="322" selection-start-column="69" selection-end-line="322" selection-end-column="69" />
+            <state relative-caret-position="160">
+              <caret line="417" column="44" lean-forward="true" selection-start-line="417" selection-start-column="44" selection-end-line="417" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -109,6 +104,7 @@
       <find>product</find>
       <find>header</find>
       <find>Cate</find>
+      <find>brand</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613011877600</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="product detail page view">
+      <created>1613096816732</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613096816732</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -222,7 +225,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.030182684" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.030182684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -233,7 +236,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32974428" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.07446808" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.07446808" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -243,7 +246,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Front page view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front page view" />
+    <MESSAGE value="product detail page view" />
+    <option name="LAST_COMMIT_MESSAGE" value="product detail page view" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/home/migrations/__init__.py">
@@ -347,8 +351,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/product-detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="322" column="69" selection-start-line="322" selection-start-column="69" selection-end-line="322" selection-end-column="69" />
+        <state relative-caret-position="160">
+          <caret line="417" column="44" lean-forward="true" selection-start-line="417" selection-start-column="44" selection-end-line="417" selection-end-column="44" />
         </state>
       </provider>
     </entry>
