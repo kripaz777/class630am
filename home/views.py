@@ -28,6 +28,12 @@ class HomeView(Baseview):
 class ItemDetailView(Baseview):
     def get(self,request,slug):
         self.view['detail_product'] = Item.objects.filter(slug=slug)
+        self.view['philips_brand'] = Brand.objects.filter(name = "philips").count()
 
 
         return render(request,'product-detail.html',self.view)
+
+class CategoryListView(Baseview):
+    def get(self,request,slug):
+        self.view['category_product'] = Item.objects.filter(category = slug)
+        return render(request,'product-list.html',self.view)

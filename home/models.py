@@ -10,6 +10,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_category_url(self):
+        return reverse("home:category",kwargs = {'slug':self.id})
 
 class Item(models.Model):
     title = models.CharField(max_length = 300)
@@ -21,12 +23,14 @@ class Item(models.Model):
     slug = models.CharField(max_length= 200)
     status = models.CharField(max_length = 300,choices = STATUS,blank = True)
     stock = models.CharField(max_length = 300,choices = STOCK)
+    category =models.ForeignKey(Category,on_delete = models.CASCADE,null = True)
 
     def __str__(self):
         return self.title
 
     def get_item_url(self):
         return reverse("home:product",kwargs = {'slug':self.slug})
+
 
 class Slider(models.Model):
     name = models.CharField(max_length = 500)
