@@ -96,8 +96,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="search">
-                            <input type="text" placeholder="Search">
-                            <button><i class="fa fa-search"></i></button>
+                            <form method="GET" action = "{% url 'home:search' %}">
+                            <input type="text" name = "query" placeholder="Search">
+                            <input type = "submit" value = "Search" class="fa fa-search">
+                            </form>
                         </div>
                     </div>
                     <div class="col-md-3">
