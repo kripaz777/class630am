@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-        
+
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container-fluid">
@@ -13,7 +13,7 @@
             </div>
         </div>
         <!-- Breadcrumb End -->
-        
+
         <!-- Login Start -->
         <div class="login">
             <div class="container-fluid">
@@ -60,6 +60,7 @@
                     <div class="col-lg-6">
                         <div class="login-form">
                             <form method = "POST">
+                                {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Username</label>
