@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
-from django.contrib import messages
+from django.contrib import messages,auth
 from django.contrib.auth.models import User
 # Create your views here.
 from .models import *
@@ -85,3 +85,45 @@ def signup(request):
             return redirect("home:account")
 
     return render(request,'login.html')
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username = username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('/')
+
+        else:
+            messages.error(request,"Username and password do not match.")
+            return redirect("home:account")
+    return redirect("home:account")
+
+class ViewCart(Baseview):
+    def get(self):
+        return render(request,'cart.html')
+
+def cart(request,slug):
+    if Cart.objects.filter(slug = slug,user = request.user.username).exists():
+        quantity = Cart.objects.get(slug = slug,user = request.user.username).quantity
+        quantity = quantity +1
+        Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity)
+
+    else:
+        username = request.user.username
+        data = Cart.objects.create(
+            user = username,
+            slug = slug,
+            item = Item.objects.filter(slug = slug)
+        )
+        data.save()
+
+    return redirect('home:viewcart')
+
+def deletecart(request,slug):
+    if Cart.objects.filter(slug = slug,user = request.user.username).exists():
+        Cart.objects.filter(slug=slug, user=request.user.username).delete()
+        messages.success(request, "The product is deleted.")
+    return redirect('home:viewcart')
