@@ -229,7 +229,7 @@
                                 {% else %}
                                 <h3><span>$</span>{{item.price}}</h3>
                                 {% endif %}
-                                <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                <a class="btn" href="{{item.get_cart_url}}"><i class="fa fa-shopping-cart"></i>Buy Now</a>
                             </div>
                         </div>
                     </div>

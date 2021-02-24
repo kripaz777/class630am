@@ -20,7 +20,7 @@ class Item(models.Model):
     image = models.TextField(blank = True)
     description = models.TextField(blank = True)
     label = models.CharField(choices = LABEL,max_length = 100,blank = True)
-    slug = models.CharField(max_length= 200)
+    slug = models.CharField(max_length= 200,unique = True)
     status = models.CharField(max_length = 300,choices = STATUS,blank = True)
     stock = models.CharField(max_length = 300,choices = STOCK)
     category =models.ForeignKey(Category,on_delete = models.CASCADE,null = True)
@@ -30,6 +30,9 @@ class Item(models.Model):
 
     def get_item_url(self):
         return reverse("home:product",kwargs = {'slug':self.slug})
+
+    def get_cart_url(self):
+        return reverse("home:add-to-cart",kwargs = {'slug':self.slug})
 
 
 class Slider(models.Model):

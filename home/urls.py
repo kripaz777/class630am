@@ -10,6 +10,6 @@ urlpatterns = [
     path('account', signup,name = 'account'),
     path('login',login,name='login'),
     path('viewcart',ViewCart.as_view(),name = 'viewcart'),
-    path('add-to-cart',cart,name = 'add-to-cart'),
+    path('add-to-cart/<slug>',cart,name = 'add-to-cart'),
 
 ]

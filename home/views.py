@@ -102,8 +102,9 @@ def login(request):
     return redirect("home:account")
 
 class ViewCart(Baseview):
-    def get(self):
-        return render(request,'cart.html')
+    def get(self,request):
+        self.view['carts'] = Cart.objects.filter(user = request.user.username)
+        return render(request,'cart.html',self.view)
 
 def cart(request,slug):
     if Cart.objects.filter(slug = slug,user = request.user.username).exists():
@@ -116,7 +117,8 @@ def cart(request,slug):
         data = Cart.objects.create(
             user = username,
             slug = slug,
-            item = Item.objects.filter(slug = slug)
+            item = Item.objects.filter(slug = slug)[0]
+
         )
         data.save()
 
@@ -127,3 +129,4 @@ def deletecart(request,slug):
         Cart.objects.filter(slug=slug, user=request.user.username).delete()
         messages.success(request, "The product is deleted.")
     return redirect('home:viewcart')
+
