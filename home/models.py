@@ -17,7 +17,7 @@ class Item(models.Model):
     title = models.CharField(max_length = 300)
     price = models.IntegerField()
     discounted_price = models.IntegerField()
-    image = models.TextField(blank = True)
+    image = models.ImageField(upload_to = 'media')
     description = models.TextField(blank = True)
     label = models.CharField(choices = LABEL,max_length = 100,blank = True)
     slug = models.CharField(max_length= 200,unique = True)
@@ -37,7 +37,7 @@ class Item(models.Model):
 
 class Slider(models.Model):
     name = models.CharField(max_length = 500)
-    image = models.TextField()
+    image = models.ImageField(upload_to = 'media')
     text = models.TextField()
     rank = models.IntegerField()
     status = models.CharField(max_length = 200,choices = STATUS,blank = True)
@@ -46,7 +46,7 @@ class Slider(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(max_length = 400)
-    image = models.TextField()
+    image = models.ImageField(upload_to='media')
     rank = models.IntegerField()
     def __str__(self):
         return self.name
@@ -62,7 +62,7 @@ class Contact(models.Model):
 
 class Ad(models.Model):
     name = models.CharField(max_length = 400)
-    image = models.TextField()
+    image = models.ImageField(upload_to = 'media')
     rank = models.IntegerField()
 
     def __str__(self):
@@ -74,6 +74,10 @@ class Cart(models.Model):
     quantity = models.IntegerField(default = 1)
     user = models.CharField(max_length = 200)
     date = models.DateTimeField(null = True)
+    total = models.IntegerField(default = 0)
     def __str__(self):
         return self.user
+
+    def delete_cart_url(self):
+        return reverse("home:delete-cart", kwargs={'slug': self.slug})
 

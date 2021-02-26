@@ -111,16 +111,28 @@ def cart(request,slug):
         quantity = Cart.objects.get(slug = slug,user = request.user.username).quantity
         quantity = quantity +1
         Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity)
+        quantity = Cart.objects.get(slug=slug, user=request.user.username).quantity
+        if Item.objects.get(slug=slug).discounted_price > 0:
+            actual_price = Item.objects.get(slug=slug).discounted_price
+            total_price = actual_price * quantity
+            Cart.objects.filter(slug=slug, user=request.user.username).update(total=total_price)
+        else:
+            actual_price = Item.objects.get(slug=slug).price
+            total_price = actual_price * quantity
+            Cart.objects.filter(slug=slug, user=request.user.username).update(total=total_price)
 
     else:
         username = request.user.username
-        data = Cart.objects.create(
-            user = username,
-            slug = slug,
-            item = Item.objects.filter(slug = slug)[0]
+        if Item.objects.get(slug=slug).discounted_price > 0:
 
-        )
-        data.save()
+            data = Cart.objects.create(
+                user = username,
+                slug = slug,
+                item = Item.objects.filter(slug = slug)[0]
+            )
+            data.save()
+
+
 
     return redirect('home:viewcart')
 
@@ -130,3 +142,21 @@ def deletecart(request,slug):
         messages.success(request, "The product is deleted.")
     return redirect('home:viewcart')
 
+def remove_single_item(request,slug):
+    if Cart.objects.filter(slug = slug,user = request.user.username).exists():
+        quantity = Cart.objects.get(slug = slug,user = request.user.username).quantity
+        quantity = quantity -1
+        Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity)
+        messages.success(request, "quantity is updated")
+
+    return redirect('home:viewcart')
+
+
+def add_single_item(request,slug):
+    if Cart.objects.filter(slug = slug,user = request.user.username).exists():
+        quantity = Cart.objects.get(slug = slug,user = request.user.username).quantity
+        quantity = quantity +1
+        Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity)
+        messages.success(request, "quantity is updated")
+
+    return redirect('home:viewcart')

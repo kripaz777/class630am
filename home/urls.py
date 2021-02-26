@@ -11,5 +11,6 @@ urlpatterns = [
     path('login',login,name='login'),
     path('viewcart',ViewCart.as_view(),name = 'viewcart'),
     path('add-to-cart/<slug>',cart,name = 'add-to-cart'),
+    path('delete-cart/<slug>', deletecart, name='delete-cart'),
 
 ]

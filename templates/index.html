@@ -20,7 +20,7 @@
                         <div class="header-slider normal-slider">
                             {% for slider in sliders %}
                             <div class="header-slider-item">
-                                <img src="{{slider.image}}" height = "400" width = "800" alt="Slider Image" />
+                                <img src="{{slider.image.url}}" height = "400" width = "800" alt="Slider Image" />
                                 <div class="header-slider-caption">
                                     <p>{{slider.text}}</p>
                                     <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
@@ -59,7 +59,7 @@
             <div class="container-fluid">
                 <div class="brand-slider">
                     {% for brand in brands %}
-                    <div class="brand-item"><img src="{{brand.image}}" alt=""></div>
+                    <div class="brand-item"><img src="{{brand.image.url}}" alt=""></div>
                     {% endfor %}
 
                 </div>
@@ -119,7 +119,7 @@
                     <div class="col-md-3">
                         <div class="category-item ch-400">
                             {% for rank in  rank_three %}
-                                <img src="{{rank.image}}" />
+                                <img src="{{rank.image.url}}" />
                                 {% endfor %}
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
@@ -129,7 +129,7 @@
                     <div class="col-md-3">
                         <div class="category-item ch-250">
                             {{% for rank in  rank_four %}
-                                <img src="{{rank.image}}" />
+                                <img src="{{rank.image.url}}" />
                                 {% endfor %}
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="category-item ch-150">
                             {% for rank in  rank_five %}
-                                <img src="{{rank.image}}" />
+                                <img src="{{rank.image.url}}" />
                                 {% endfor %}
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
@@ -147,7 +147,7 @@
                     <div class="col-md-3">
                         <div class="category-item ch-150">
                             {% for rank in  rank_six %}
-                                <img src="{{rank.image}}" />
+                                <img src="{{rank.image.url}}" />
                                 {% endfor %}
 
                             <a class="category-name" href="">
@@ -156,7 +156,7 @@
                         </div>
                         <div class="category-item ch-250">
                             {% for rank in  rank_seven %}
-                                <img src="{{rank.image}}" />
+                                <img src="{{rank.image.url}}" />
                                 {% endfor %}
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
@@ -166,7 +166,7 @@
                     <div class="col-md-3">
                         <div class="category-item ch-400">
                             {% for rank in  rank_eight %}
-                                <img src="{{rank.image}}" />
+                                <img src="{{rank.image.url}}" />
                                 {% endfor %}
                             <a class="category-name" href="">
                                 <p>Some text goes here that describes the image</p>
@@ -215,7 +215,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="{{item.get_item_url}}">
-                                    <img src="{{item.image}}" alt="Product Image">
+                                    <img src="{{item.image.url}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -279,7 +279,7 @@
                             </div>
                             <div class="product-image">
                                 <a href="{{item.get_item_url}}">
-                                    <img src="{{item.image}}" alt="Product Image">
+                                    <img src="{{item.image.url}}" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
