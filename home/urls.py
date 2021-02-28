@@ -12,5 +12,7 @@ urlpatterns = [
     path('viewcart',ViewCart.as_view(),name = 'viewcart'),
     path('add-to-cart/<slug>',cart,name = 'add-to-cart'),
     path('delete-cart/<slug>', deletecart, name='delete-cart'),
+    path('delete-single-cart/<slug>',remove_single_item, name='delete-single-cart'),
+    path('contact',contact, name='contact'),
 
 ]

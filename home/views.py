@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.contrib import messages,auth
 from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
+
 # Create your views here.
 from .models import *
 
@@ -111,7 +113,8 @@ def cart(request,slug):
         quantity = Cart.objects.get(slug = slug,user = request.user.username).quantity
         quantity = quantity +1
         Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity)
-        quantity = Cart.objects.get(slug=slug, user=request.user.username).quantity
+
+        # quantity = Cart.objects.get(slug=slug, user=request.user.username).quantity
         if Item.objects.get(slug=slug).discounted_price > 0:
             actual_price = Item.objects.get(slug=slug).discounted_price
             total_price = actual_price * quantity
@@ -124,13 +127,17 @@ def cart(request,slug):
     else:
         username = request.user.username
         if Item.objects.get(slug=slug).discounted_price > 0:
+            total =  Item.objects.get(slug=slug).discounted_price
+        else:
+            total =  Item.objects.get(slug=slug).price
 
-            data = Cart.objects.create(
-                user = username,
-                slug = slug,
-                item = Item.objects.filter(slug = slug)[0]
-            )
-            data.save()
+        data = Cart.objects.create(
+            user = username,
+            slug = slug,
+            item = Item.objects.filter(slug = slug)[0],
+            total = total
+        )
+        data.save()
 
 
 
@@ -145,8 +152,18 @@ def deletecart(request,slug):
 def remove_single_item(request,slug):
     if Cart.objects.filter(slug = slug,user = request.user.username).exists():
         quantity = Cart.objects.get(slug = slug,user = request.user.username).quantity
+
         quantity = quantity -1
-        Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity)
+        if Item.objects.get(slug=slug).discounted_price > 0:
+            actual_price = Item.objects.get(slug=slug).discounted_price
+            total_price = actual_price * quantity
+            # Cart.objects.filter(slug=slug, user=request.user.username).update(total=total_price)
+        else:
+            actual_price = Item.objects.get(slug=slug).price
+            total_price = actual_price * quantity
+            # Cart.objects.filter(slug=slug, user=request.user.username).update(total=total_price)
+
+        Cart.objects.filter(slug = slug,user = request.user.username).update(quantity = quantity,total = total_price)
         messages.success(request, "quantity is updated")
 
     return redirect('home:viewcart')
@@ -160,3 +177,28 @@ def add_single_item(request,slug):
         messages.success(request, "quantity is updated")
 
     return redirect('home:viewcart')
+
+def contact(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        data = Contact.objects.create(
+            name = name,
+            email = email,
+            subject = subject,
+            message = message
+        )
+        data.save()
+        messages.success(request, "Message is submitted")
+
+        # subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
+        # text_content = 'This is an important message.'
+        html_content = '<p>This is an <strong>important</strong> message.</p>'
+        msg = EmailMultiAlternatives(subject, message, 'aiforcoral@gmail.com', ['aiforcoral@gmail.com'])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+
+    return render(request,'contact.html')
