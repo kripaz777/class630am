@@ -196,9 +196,21 @@ def contact(request):
 
         # subject, from_email, to = 'hello', 'from@example.com', 'to@example.com'
         # text_content = 'This is an important message.'
-        html_content = '<p>This is an <strong>important</strong> message.</p>'
+        html_content = f'<p>The customer having name {name} mail address {email} and subject {subject} has sent you a message The message is <strong>important</strong> {message}.</p>'
         msg = EmailMultiAlternatives(subject, message, 'aiforcoral@gmail.com', ['aiforcoral@gmail.com'])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
 
     return render(request,'contact.html')
+
+
+# ---------------------------API----------------------------------------------------------
+
+
+from django.contrib.auth.models import User
+from rest_framework import viewsets
+from .serializers import ItemSerializer
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
